@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Database, Play, FileText, AlertCircle, CheckCircle, Download, Settings } from 'lucide-react';
+import { Database, Play, FileText, AlertCircle, CheckCircle, Download, Settings, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
 interface DatabaseStatus {
@@ -162,6 +162,43 @@ export default function DatabasePage() {
           <Button onClick={checkStatus} variant="outline" size="sm">
             刷新状态
           </Button>
+        </div>
+      </div>
+
+      {/* 数据库管理操作 */}
+      <div className="bg-white p-6 rounded-lg border">
+        <div className="flex items-center mb-4">
+          <Settings className="w-6 h-6 text-gray-600 mr-2" />
+          <h3 className="text-lg font-semibold">数据库管理操作</h3>
+        </div>
+
+        <p className="text-gray-600 mb-4">
+          安装、卸载和管理数据库软件
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link href="/admin/database/install">
+            <Button className="w-full justify-start bg-blue-600 hover:bg-blue-700">
+              <Download className="w-4 h-4 mr-2" />
+              安装数据库
+            </Button>
+          </Link>
+          
+          <Link href="/admin/database/uninstall">
+            <Button variant="destructive" className="w-full justify-start">
+              <Trash2 className="w-4 h-4 mr-2" />
+              卸载数据库
+            </Button>
+          </Link>
+        </div>
+
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mt-4">
+          <h4 className="font-semibold text-gray-900 mb-2">支持的数据库</h4>
+          <ul className="text-gray-700 text-sm space-y-1">
+            <li>• <strong>PostgreSQL 15.4</strong>: 企业级开源关系数据库</li>
+            <li>• <strong>MySQL 8.0.34</strong>: 世界最流行的开源数据库</li>
+            <li>• <strong>SQLite3 3.43.0</strong>: 轻量级嵌入式数据库</li>
+          </ul>
         </div>
       </div>
 

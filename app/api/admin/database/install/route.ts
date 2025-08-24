@@ -3,7 +3,7 @@ import { databaseInstaller } from '@/lib/database-installer';
 import { z } from 'zod';
 
 const InstallRequestSchema = z.object({
-  databaseType: z.enum(['postgresql', 'mysql']),
+  databaseType: z.enum(['postgresql', 'mysql', 'sqlite3']),
   version: z.string(),
   downloadUrl: z.string().url(),
   adminKey: z.string(),

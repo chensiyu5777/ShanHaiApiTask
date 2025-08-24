@@ -146,6 +146,39 @@ async function testDatabaseConnection(databaseType: string, config: any): Promis
           port: config.port
         }
       };
+    } else if (databaseType === 'sqlite3') {
+      const sqlite3 = await import('sqlite3');
+      const { Database } = sqlite3;
+      
+      return new Promise((resolve) => {
+        const db = new Database(':memory:', (err) => {
+          if (err) {
+            resolve({
+              success: false,
+              error: `SQLite3 连接失败: ${err.message}`
+            });
+          } else {
+            db.get('SELECT sqlite_version() as version', (err, row: any) => {
+              db.close();
+              if (err) {
+                resolve({
+                  success: false,
+                  error: `SQLite3 查询失败: ${err.message}`
+                });
+              } else {
+                resolve({
+                  success: true,
+                  details: {
+                    version: `SQLite ${row.version}`,
+                    file: config.host,
+                    type: 'file'
+                  }
+                });
+              }
+            });
+          }
+        });
+      });
     }
     
     return { success: false, error: '不支持的数据库类型' };
