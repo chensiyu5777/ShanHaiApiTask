@@ -1,11 +1,14 @@
-# 全栈管理平台
+# ShanHaiApiTask - 全栈管理平台
 
-高度可定制的全栈管理平台，基于 Next.js 14 + TypeScript + PostgreSQL + Drizzle ORM 构建。
+高度可定制的全栈管理平台，基于 Next.js 14 + TypeScript + 多数据库支持 + Drizzle ORM 构建。
 
 ## 功能特性
 
 ### 🚀 核心功能
 
+- **真实数据库安装**: 支持 PostgreSQL、MySQL、SQLite3 的真实安装（非模拟）
+- **数据库驱动管理**: 自动安装和管理对应的 Node.js 数据库驱动
+- **数据库卸载功能**: 完整的数据库卸载，包括软件、驱动、文件清理
 - **数据库全自动初始化**: 支持标准初始化和自定义 SQL 脚本初始化
 - **动态数据库管理**: 表与字段操作、索引优化
 - **高度自定义 API**: 指令驱动的 API 命令系统
@@ -16,7 +19,8 @@
 
 - **前端**: Next.js 14 (App Router) + TypeScript + Tailwind CSS
 - **后端**: Next.js API Routes + TypeScript
-- **数据库**: PostgreSQL + Drizzle ORM
+- **数据库**: PostgreSQL / MySQL / SQLite3 + Drizzle ORM (动态适配)
+- **数据库驱动**: pg, mysql2, sqlite3 (自动管理安装)
 - **验证**: Zod
 - **图表**: Recharts
 - **图标**: Lucide React
@@ -26,8 +30,11 @@
 ### 1. 环境要求
 
 - Node.js 18+
-- PostgreSQL 12+
 - npm 或 yarn
+- Windows 系统（用于数据库自动安装）
+- 管理员权限（用于数据库安装）
+
+**注意**: 数据库不需要预先安装，系统提供自动安装功能
 
 ### 2. 安装依赖
 
@@ -69,6 +76,35 @@ npm start
 \`\`\`
 
 服务将在 http://localhost:15777 启动
+
+### 5. 数据库安装
+
+访问 http://localhost:15777/admin/database/install 使用数据库安装向导：
+
+1. **选择数据库类型**: PostgreSQL / MySQL / SQLite3
+2. **自动下载**: 系统会自动下载对应的数据库安装包
+3. **自动安装**: 包括数据库软件和 Node.js 驱动
+4. **配置连接**: 安装完成后配置数据库连接信息
+5. **系统重启**: 应用新的数据库配置
+
+#### 支持的数据库版本
+
+- **PostgreSQL 15.4**: 企业级开源关系数据库
+- **MySQL 8.0.34**: 世界最流行的开源数据库
+- **SQLite3 3.43.0**: 轻量级嵌入式数据库
+
+#### 卸载数据库
+
+如需卸载数据库，可以使用 API：
+
+```bash
+curl -X POST http://localhost:15777/api/admin/database/uninstall \
+  -H "Content-Type: application/json" \
+  -d '{
+    "databaseType": "postgresql",
+    "adminKey": "your-admin-key"
+  }'
+```
 
 ## 项目结构
 
