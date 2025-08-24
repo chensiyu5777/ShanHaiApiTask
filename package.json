@@ -1,0 +1,49 @@
+{
+  "name": "fullstack-admin-platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 15777",
+    "build": "next build",
+    "start": "next start -p 15777",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:generate:mysql": "drizzle-kit generate --config=drizzle.config.mysql.ts",
+    "db:migrate:mysql": "drizzle-kit migrate --config=drizzle.config.mysql.ts",
+    "db:push:mysql": "drizzle-kit push --config=drizzle.config.mysql.ts",
+    "db:studio:mysql": "drizzle-kit studio --config=drizzle.config.mysql.ts"
+  },
+  "dependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.19",
+    "clsx": "^2.1.1",
+    "drizzle-kit": "^0.24.0",
+    "drizzle-orm": "^0.33.0",
+    "lucide-react": "^0.439.0",
+    "mysql2": "^3.14.3",
+    "next": "14.2.5",
+    "pg": "^8.16.3",
+    "postcss": "^8.4.38",
+    "postgres": "^3.4.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "recharts": "^2.12.7",
+    "sqlite3": "^5.1.6",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.15.5",
+    "@types/sqlite3": "^3.1.11",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5"
+  }
+}
